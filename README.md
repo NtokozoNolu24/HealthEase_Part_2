@@ -1,7 +1,7 @@
-# HealthEase_Part_2
-#  HealthEase
 
-> Your Health, Your Hands 
+# 🏥 HealthEase
+
+> **Your Health, Your Hands 💚**
 
 A comprehensive, fully offline Android healthcare app that empowers South African users to proactively manage their personal health information, receive intelligent insights, and stay connected with essential healthcare services.
 
@@ -9,10 +9,9 @@ Built entirely with **Jetpack Compose** and **Room (SQLite)** — no backend, no
 
 **Version:** 1.0
 
-
 ---
 
-## Table of Contents
+## 📖 Table of Contents
 
 1. [Overview](#-overview)
 2. [Features](#-features)
@@ -29,23 +28,23 @@ Built entirely with **Jetpack Compose** and **Room (SQLite)** — no backend, no
 
 ---
 
-##  Overview
+## 📖 Overview
 
 **HealthEase** bridges the gap between users and their health data through an intuitive, emoji-driven, multilingual-ready platform. Every feature works **100% offline** — ideal for South African users with intermittent connectivity.
 
-###  Core Principles
+### 🎯 Core Principles
 
 | Principle | Description |
 |---|---|
-|  **Fully Offline** | All data lives in a local SQLite database (Room) |
-|  **Green & Yellow Theme** | Calming, health-focused color palette (light + dark mode) |
-|  **Emoji-Driven UI** | Friendly, universally understood icons instead of image assets |
-|  **Zero Backend** | No servers, no APIs, no Firebase, no cloud dependencies |
-|  **Privacy First** | Nothing ever leaves the device |
-| **Accessible** | WCAG AA contrast, large touch targets, font scaling |
-|  **Modern Android** | Jetpack Compose, Material 3, Kotlin Coroutines |
+| 🔌 **Fully Offline** | All data lives in a local SQLite database (Room) |
+| 🎨 **Green & Yellow Theme** | Calming, health-focused color palette (light + dark mode) |
+| 😀 **Emoji-Driven UI** | Friendly, universally understood icons |
+| 🚀 **Zero Backend** | No servers, no APIs, no Firebase, no cloud dependencies |
+| 🔒 **Privacy First** | Nothing ever leaves the device |
+| ♿ **Accessible** | WCAG AA contrast, large touch targets, font scaling |
+| 📱 **Modern Android** | Jetpack Compose, Material 3, Kotlin Coroutines |
 
-###  Target Users
+### 🎯 Target Users
 
 - **Primary:** Adults aged 25–55 managing chronic conditions or busy lifestyles
 - **Secondary:** Elderly users (55+) needing medication reminders
@@ -54,9 +53,9 @@ Built entirely with **Jetpack Compose** and **Room (SQLite)** — no backend, no
 
 ---
 
-##  Features
+## ✨ Features
 
-###  Authentication
+### 🔐 Authentication
 
 | Feature | Details |
 |---|---|
@@ -67,7 +66,7 @@ Built entirely with **Jetpack Compose** and **Room (SQLite)** — no backend, no
 | Password Hashing | Salted SHA-256 (PBKDF2-style iteration) |
 | Session Management | In-memory session survives navigation, cleared on logout |
 
-###  Medical ID (Emergency Information)
+### 🩺 Medical ID (Emergency Information)
 
 | Feature | Details |
 |---|---|
@@ -78,10 +77,10 @@ Built entirely with **Jetpack Compose** and **Room (SQLite)** — no backend, no
 | Emergency Contact | Name, phone, relationship |
 | Primary Physician | Name + phone |
 | Health Insurance | Provider, policy number, expiry date |
-| **Emergency Design** | Red-themed card with prominent blood type display |
+| Emergency Design | Red-themed card with prominent blood type display |
 | Quick Access | One tap from Dashboard or bottom nav |
 
-###  Medications & Adherence
+### 💊 Medications & Adherence
 
 | Feature | Details |
 |---|---|
@@ -89,22 +88,22 @@ Built entirely with **Jetpack Compose** and **Room (SQLite)** — no backend, no
 | Frequency Presets | Once daily, Twice daily, Three times daily, etc. |
 | Special Flags | "Take with food" toggle |
 | Instructions | Free-text field |
-| **Adherence Log** | Taken  / Skipped  buttons with timestamp |
-| 30-Day Adherence % | Live calculation displayed at the top of the list |
+| Adherence Log | Taken ✅ / Skipped ⏭️ buttons with timestamp |
+| 30-Day Adherence % | Live calculation displayed at top of list |
 | Delete / Deactivate | Remove meds you no longer take |
 | Refill Reminder | Optional refill date field |
 
-###  Appointments
+### 📅 Appointments
 
 | Feature | Details |
 |---|---|
 | Add Appointment | Doctor/clinic, specialty, date/time, address, notes |
 | Prep Checklist | Comma-separated items shown before the visit |
 | Status Tracking | Scheduled → Attended / Missed / Cancelled |
-| Sections |  Upcoming and  Past |
+| Sections | 🔜 Upcoming and 📜 Past |
 | Buffer Time | Configurable reminder buffer (15–60 min) |
 
-### Health Articles
+### 📰 Health Articles
 
 | Feature | Details |
 |---|---|
@@ -112,28 +111,28 @@ Built entirely with **Jetpack Compose** and **Room (SQLite)** — no backend, no
 | Categories | Nutrition, Fitness, Mental Health, Chronic Conditions, COVID-19, Women's/Men's/Senior Health, General Wellness |
 | Search | Live search on title + summary |
 | Filter Chips | Tap category to filter the feed |
-|  Recommended | Personalized "Recommended for you" section |
+| ⭐ Recommended | Personalized "Recommended for you" section |
 | Read Time | Auto-computed minutes indicator |
-|  Bookmarks | Save any article for later reading |
-|  Share | System share sheet |
-|  Disclaimer | Medical disclaimer on every article |
+| 🔖 Bookmarks | Save any article for later reading |
+| 📤 Share | System share sheet |
+| ⚠️ Disclaimer | Medical disclaimer on every article |
 | Source Attribution | WHO / SA DoH labels |
 
-###  Settings
+### ⚙️ Settings
 
 | Category | Options |
 |---|---|
-| **General** | Language (English/isiZulu/Afrikaans), Theme (Light/Dark/System), Font Size, Units |
-| **Notifications** | Per-type toggles (reminders, tips, system, sync), Quiet Hours |
-| **Privacy** | Data sharing, biometric unlock, lock-screen Medical ID visibility |
-| **Data** | Export data, storage usage display |
-| **Account** | Log out, delete account (with confirmation) |
+| General | Language (English/isiZulu/Afrikaans), Theme (Light/Dark/System), Font Size, Units |
+| Notifications | Per-type toggles (reminders, tips, system, sync), Quiet Hours |
+| Privacy | Data sharing, biometric unlock, lock-screen Medical ID visibility |
+| Data | Export data, storage usage display |
+| Account | Log out, delete account (with confirmation) |
 
-###  Notifications (In-App Center)
+### 🔔 Notifications (In-App Center)
 
 | Feature | Details |
 |---|---|
-| Types | reminder,  tip,  system,  sync |
+| Types | ⏰ reminder, 💡 tip, ⚙️ system, 🔄 sync |
 | Unread Badge | On dashboard bell + notification center title |
 | Mark Read | Tap any notification → marked read |
 | Mark All Read | Overflow menu |
@@ -141,7 +140,7 @@ Built entirely with **Jetpack Compose** and **Room (SQLite)** — no backend, no
 | Auto-populated | Adding a medication/appointment drops a reminder here |
 | Persistence | Notifications stored in Room — survive app restart |
 
-###  Dashboard
+### 🏠 Dashboard
 
 | Feature | Details |
 |---|---|
@@ -149,39 +148,40 @@ Built entirely with **Jetpack Compose** and **Room (SQLite)** — no backend, no
 | Health Score Card | Score + progress bar (85/100 placeholder) |
 | Quick Actions | 4 tappable cards → Medical ID, Meds, Appointments, Articles |
 | Tip of the Day | Rotating health tips |
-|  Bell | Notification center shortcut |
+| 🔔 Bell | Notification center shortcut |
 
 ---
 
-##  Architecture
+## 🏗️ Architecture
 
 HealthEase follows the **MVVM + Repository** pattern with reactive **StateFlow** streams.
-┌──────────────────────────────────────────────────┐
-│ Jetpack Compose UI │
-│ (Screens + Components + Navigation) │
-└──────────────────────┬───────────────────────────┘
-│ observes StateFlow
-┌──────────────────────▼───────────────────────────┐
-│ ViewModels │
-│ (LoginViewModel, MedicationViewModel, …) │
-└──────────────────────┬───────────────────────────┘
-│ suspend functions
-┌──────────────────────▼───────────────────────────┐
-│ Repositories │
-│ (UserRepo, MedicationRepo, ArticleRepo, …) │
-└──────────────────────┬───────────────────────────┘
-│ DAO calls
-┌──────────────────────▼───────────────────────────┐
-│ Room DAOs │
-│ (UserDao, MedicationDao, ArticleDao, …) │
-└──────────────────────┬───────────────────────────┘
-│ SQL
-┌──────────────────────▼───────────────────────────┐
-│ SQLite Database │
-│ healthease.db (v4) │
-└──────────────────────────────────────────────────┘
 
-text
+```
+┌──────────────────────────────────────────────────┐
+│              Jetpack Compose UI                  │
+│    (Screens + Components + Navigation)           │
+└──────────────────────┬───────────────────────────┘
+                       │ observes StateFlow
+┌──────────────────────▼───────────────────────────┐
+│                   ViewModels                     │
+│  (LoginViewModel, MedicationViewModel, …)        │
+└──────────────────────┬───────────────────────────┘
+                       │ suspend functions
+┌──────────────────────▼───────────────────────────┐
+│                Repositories                      │
+│  (UserRepo, MedicationRepo, ArticleRepo, …)      │
+└──────────────────────┬───────────────────────────┘
+                       │ DAO calls
+┌──────────────────────▼───────────────────────────┐
+│                    Room DAOs                     │
+│  (UserDao, MedicationDao, ArticleDao, …)         │
+└──────────────────────┬───────────────────────────┘
+                       │ SQL
+┌──────────────────────▼───────────────────────────┐
+│                 SQLite Database                  │
+│              healthease.db  (v4)                 │
+└──────────────────────────────────────────────────┘
+```
 
 ### Key Patterns
 
@@ -189,11 +189,11 @@ text
 - **Reactive UI:** ViewModels expose `StateFlow<UiState>`; screens collect with lifecycle-awareness
 - **Session:** `HealthEaseApplication` holds `currentUserId` in memory
 - **Seeding:** Articles seeded once on app startup (idempotent — runs only if table is empty)
-- **Navigation:** Compose Navigation with a shared `NavHostController`
+- **Navigation:** Compose Navigation with shared `NavHostController`
 
 ---
 
-##  Database Schema
+## 🗄️ Database Schema
 
 **10 tables**, all with UUID primary keys, `createdAt` / `updatedAt` timestamps, and `CASCADE` foreign keys to `users`.
 
@@ -212,7 +212,7 @@ text
 
 ---
 
-##  Design System
+## 🎨 Design System
 
 ### Color Palette
 
@@ -231,8 +231,6 @@ text
 | Text Primary | `#2D3436` | Dark text |
 | Text Secondary | `#636E72` | Muted text |
 
-**Dark mode** equivalent values are provided for every color.
-
 ### Typography
 
 | Style | Size | Weight | Line Height |
@@ -243,7 +241,7 @@ text
 | Body Medium | 14sp | Regular | 1.4 |
 | Label Small | 12sp | Regular | 1.3 |
 
-Font family: **System sans-serif** (Inter-compatible).
+Font family: System sans-serif (Inter-compatible).
 
 ### Accessibility
 
@@ -251,69 +249,69 @@ Font family: **System sans-serif** (Inter-compatible).
 - Minimum 48dp touch targets
 - Font scaling supported
 - Emoji + text labels (never emoji-only buttons)
-- Screen-reader-friendly content descriptions
 
 ---
 
-##  Project Structure
+## 📁 Project Structure
+
+```
 app/src/main/java/com/example/healthease/
-├── HealthEaseApplication.kt # App class — session, repositories, seed
-├── MainActivity.kt # Entry point
+├── HealthEaseApplication.kt          # App class — session, repositories, seed
+├── MainActivity.kt                   # Entry point
 ├── data/
-│ ├── local/ # Room layer
-│ │ ├── HealthEaseDatabase.kt # DB v4, 10 entities
-│ │ ├── UserEntity.kt / UserDao.kt
-│ │ ├── ProfileEntity.kt / ProfileDao.kt
-│ │ ├── MedicationEntity.kt / MedicationDao.kt
-│ │ ├── MedicationLogEntity.kt
-│ │ ├── AppointmentEntity.kt / AppointmentDao.kt
-│ │ ├── HealthCheckEntity.kt / HealthCheckDao.kt
-│ │ ├── NotificationEntity.kt / NotificationDao.kt
-│ │ ├── UserSettingsEntity.kt / UserSettingsDao.kt
-│ │ ├── ArticleEntity.kt / ArticleDao.kt
-│ │ └── BookmarkEntity.kt / BookmarkDao.kt
-│ ├── repository/ # Repository layer
-│ │ ├── UserRepository.kt
-│ │ ├── ProfileRepository.kt
-│ │ ├── MedicationRepository.kt
-│ │ ├── AppointmentRepository.kt
-│ │ ├── NotificationRepository.kt
-│ │ ├── SettingsRepository.kt
-│ │ └── ArticleRepository.kt
-│ ├── security/
-│ │ └── PasswordHasher.kt # Salted SHA-256
-│ └── seed/
-│ └── ArticleSeeder.kt # 15 seeded articles
+│   ├── local/                        # Room layer
+│   │   ├── HealthEaseDatabase.kt     # DB v4, 10 entities
+│   │   ├── UserEntity.kt / UserDao.kt
+│   │   ├── ProfileEntity.kt / ProfileDao.kt
+│   │   ├── MedicationEntity.kt / MedicationDao.kt
+│   │   ├── MedicationLogEntity.kt
+│   │   ├── AppointmentEntity.kt / AppointmentDao.kt
+│   │   ├── HealthCheckEntity.kt / HealthCheckDao.kt
+│   │   ├── NotificationEntity.kt / NotificationDao.kt
+│   │   ├── UserSettingsEntity.kt / UserSettingsDao.kt
+│   │   ├── ArticleEntity.kt / ArticleDao.kt
+│   │   └── BookmarkEntity.kt / BookmarkDao.kt
+│   ├── repository/                   # Repository layer
+│   │   ├── UserRepository.kt
+│   │   ├── ProfileRepository.kt
+│   │   ├── MedicationRepository.kt
+│   │   ├── AppointmentRepository.kt
+│   │   ├── NotificationRepository.kt
+│   │   ├── SettingsRepository.kt
+│   │   └── ArticleRepository.kt
+│   ├── security/
+│   │   └── PasswordHasher.kt         # Salted SHA-256
+│   └── seed/
+│       └── ArticleSeeder.kt          # 15 seeded articles
 ├── ui/
-│ ├── theme/
-│ │ ├── Color.kt # Green + Yellow palette
-│ │ ├── Type.kt # Typography scale
-│ │ └── Theme.kt # Material 3 theme
-│ ├── navigation/
-│ │ ├── AppNavigation.kt # All routes
-│ │ └── BottomNavBar.kt # 5-tab bottom nav
-│ ├── components/
-│ │ └── HealthEaseComponents.kt # Logo, TextField, Button, ErrorBanner
-│ └── screens/
-│ ├── splash/SplashScreen.kt
-│ ├── login/{LoginScreen, LoginViewModel}.kt
-│ ├── register/{RegisterScreen, RegisterViewModel}.kt
-│ ├── dashboard/DashboardScreen.kt
-│ ├── medicalid/{MedicalIdScreen, MedicalIdEditScreen, MedicalIdViewModel}.kt
-│ ├── medications/{MedicationsScreen, AddMedicationScreen, MedicationViewModel}.kt
-│ ├── appointments/{AppointmentsScreen, AddAppointmentScreen, AppointmentViewModel}.kt
-│ ├── articles/{ArticlesFeedScreen, ArticleDetailScreen, BookmarksScreen, ArticleViewModel, ArticleDetailViewModel}.kt
-│ ├── settings/{SettingsScreen, SettingsViewModel}.kt
-│ └── notifications/{NotificationCenterScreen, NotificationViewModel}.kt
+│   ├── theme/
+│   │   ├── Color.kt                  # Green + Yellow palette
+│   │   ├── Type.kt                   # Typography scale
+│   │   └── Theme.kt                  # Material 3 theme
+│   ├── navigation/
+│   │   ├── AppNavigation.kt          # All routes
+│   │   └── BottomNavBar.kt           # 5-tab bottom nav
+│   ├── components/
+│   │   └── HealthEaseComponents.kt   # Logo, TextField, Button, ErrorBanner
+│   └── screens/
+│       ├── splash/SplashScreen.kt
+│       ├── login/{LoginScreen, LoginViewModel}.kt
+│       ├── register/{RegisterScreen, RegisterViewModel}.kt
+│       ├── dashboard/DashboardScreen.kt
+│       ├── medicalid/{MedicalIdScreen, MedicalIdEditScreen, MedicalIdViewModel}.kt
+│       ├── medications/{MedicationsScreen, AddMedicationScreen, MedicationViewModel}.kt
+│       ├── appointments/{AppointmentsScreen, AddAppointmentScreen, AppointmentViewModel}.kt
+│       ├── articles/{ArticlesFeedScreen, ArticleDetailScreen, BookmarksScreen, ArticleViewModel, ArticleDetailViewModel}.kt
+│       ├── settings/{SettingsScreen, SettingsViewModel}.kt
+│       └── notifications/{NotificationCenterScreen, NotificationViewModel}.kt
 └── util/
-├── Validation.kt # Email, password, SA phone
-└── DateTimeUtils.kt # Date formatting helpers
-
-text
+    ├── Validation.kt                 # Email, password, SA phone
+    └── DateTimeUtils.kt              # Date formatting helpers
+```
 
 ---
 
-##  Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -330,133 +328,142 @@ text
 
 1. **Clone the repository**
    ```bash
-  
-Open in Android Studio
+   git clone https://github.com/your-username/healthease.git
+   cd healthease
+   ```
 
-File → Open → select the project root
+2. **Open in Android Studio**
+   - File → Open → select the project root
 
-Sync Gradle
+3. **Sync Gradle**
+   - File → Sync Project with Gradle Files
+   - Wait for "BUILD SUCCESSFUL"
 
-File → Sync Project with Gradle Files
+4. **Set Gradle JDK**
+   - File → Settings → Build, Execution, Deployment → Build Tools → Gradle
+   - Gradle JDK: select **17**
 
-Wait for "BUILD SUCCESSFUL"
+5. **Create / start an emulator**
+   - Tools → Device Manager → Create Device
+   - Pick **Pixel 6** + **API 34 (x86_64)**
+   - Start it ▶️
 
-Set Gradle JDK
+6. **Run the app**
+   - Click ▶️ **Run** (or `Shift + F10`)
 
-File → Settings → Build, Execution, Deployment → Build Tools → Gradle
+### First-Run Flow
 
-Gradle JDK: select 17
+1. **🏥 Splash screen** — 2-second animated logo
+2. **Login screen** → tap **Sign Up ✨**
+3. **Register screen**:
+   - Name: `Test User`
+   - Email: `test@test.com`
+   - Phone: `0821234567`
+   - Password: `Test1234`
+   - Confirm: `Test1234`
+4. Land on **🏠 Dashboard**
+5. Explore bottom navigation tabs
 
-Create / start an emulator
+---
 
-Tools → Device Manager → Create Device
+## 🧪 Testing the App
 
-Pick Pixel 6 + API 34 (x86_64)
+| Feature | Test Steps |
+|---|---|
+| Register | Create account with valid SA phone → check validation errors on bad input |
+| Login | Log out → log in with same credentials → session persists |
+| Medical ID | Fill in O+ → save → reload → still there |
+| Medications | Add med → tap ✅ Taken → adherence % updates |
+| Medications (Skip) | Tap ⏭️ Skip → adherence % recalculates |
+| Appointments | Add future date → shows in 🔜 Upcoming |
+| Appointments (Past) | Add past date → shows in 📜 Past |
+| Articles | Search "diabetes" → bookmark → see in 🔖 Bookmarks |
+| Articles (Categories) | Tap "Nutrition" chip → only nutrition articles |
+| Settings | Toggle notifications → log out → log in → still set |
+| Notifications | Add a medication → open 🔔 → notification appears |
+| Persistence | Kill app → reopen → all data still there |
+| Offline Test | Turn off Wi-Fi + mobile data → app fully functional |
 
-Start it 
+---
 
-Run the app
+## 🛠️ Tech Stack
 
-Click  Run (or Shift + F10)
+| Layer | Technology |
+|---|---|
+| Language | Kotlin 1.9.22 |
+| UI | Jetpack Compose + Material 3 |
+| Compose BOM | 2024.02.00 |
+| Compose Compiler | 1.5.8 |
+| Navigation | Navigation Compose 2.7.7 |
+| State | ViewModel 2.7.0 + StateFlow + Coroutines 1.7.3 |
+| Database | Room 2.6.1 (SQLite) |
+| Security | Salted SHA-256 password hashing |
+| Build | Gradle 8.2 + AGP 8.2.0 + KSP 1.9.22-1.0.17 |
+| Min SDK | 24 (Android 7.0) |
+| Target SDK | 34 (Android 14) |
 
-First-Run Flow
-Splash screen — 2-second animated logo
+---
 
-Login screen → tap Sign Up 
+## 📝 Requirements Coverage
 
-Register screen:
+| Section | Feature | Status |
+|---|---|---|
+| 🔐 Auth | Register, Login, Session | ✅ |
+| 👤 Profile | Medical ID, Emergency info, Insurance | ✅ |
+| 💊 Medications | Schedule, Adherence tracking | ✅ |
+| 📅 Appointments | Add, Track, Prep | ✅ |
+| 🔔 Notifications | In-app center | ✅ |
+| 📰 Articles | Feed, Search, Bookmarks | ✅ |
+| ⚙️ Settings | Preferences, Privacy | ✅ |
+| 🏠 Dashboard | Quick actions, Bell | ✅ |
+| 📡 Offline | 100% local SQLite | ✅ |
+| 🌍 Multi-Language | English UI, isiZulu/Afrikaans selectable | ⚠️ UI-ready |
+| 🩺 Symptom Checker | Rule-based | ⏳ Planned |
+| 📊 Analytics | Charts | ⏳ Planned |
+| 🔗 SSO (Google/Facebook) | OAuth | ❌ Not in scope |
+| 📲 Push (FCM) | Firebase | ❌ Not in scope |
 
-Name: Test User
+**~85% of the original spec implemented** — all "Must-have" features except SSO, FCM push, symptom checker, and OS-level lock-screen access.
 
-Email: test@test.com
+---
 
-Phone: 0821234567
+## ⚠️ Known Limitations
 
-Password: Test1234
+These features are **intentionally not implemented** — they require cloud services or OS-level permissions that conflict with the "100% offline" goal:
 
-Confirm: Test1234
+- ❌ SSO with Google/Facebook — needs OAuth server
+- ❌ FCM push notifications — needs Firebase + server
+- ❌ Lock-screen Medical ID — needs system permissions
+- ❌ Medical document uploads — needs file picker + storage permissions
+- ❌ Real email password reset — needs email server
+- ❌ Multi-device sync — no backend
+- ⏳ Symptom Checker — planned, rule-based
+- ⏳ Analytics charts — planned
 
-Land on  Dashboard
+Everything else works **fully offline** on a single device.
 
-Explore bottom navigation tabs
+---
 
- Testing the App
-Feature	Test Steps
-Register	Create account with valid SA phone → check validation errors on bad input
-Login	Log out → log in with same credentials → session persists
-Medical ID	Fill in O+ → save → reload → still there
-Medications	Add med → tap  Taken → adherence % updates
-Medications (Skip)	Tap  Skip → adherence % recalculates
-Appointments	Add future date → shows in  Upcoming
-Appointments (Past)	Add past date → shows in  Past
-Articles	Search "diabetes" → bookmark → see in  Bookmarks
-Articles (Categories)	Tap "Nutrition" chip → only nutrition articles
-Settings	Toggle notifications → log out → log in → still set
-Notifications	Add a medication → open  → notification appears
-Persistence	Kill app → reopen → all data still there
-Offline Test	Turn off Wi-Fi + mobile data → app fully functional
- Tech Stack
-Layer	Technology
-Language	Kotlin 1.9.22
-UI	Jetpack Compose + Material 3
-Compose BOM	2024.02.00
-Compose Compiler	1.5.8
-Navigation	Navigation Compose 2.7.7
-State	ViewModel 2.7.0 + StateFlow + Coroutines 1.7.3
-Database	Room 2.6.1 (SQLite)
-Security	Salted SHA-256 password hashing
-Build	Gradle 8.2 + AGP 8.2.0 + KSP 1.9.22-1.0.17
-Min SDK	24 (Android 7.0)
-Target SDK	34 (Android 14)
- Requirements Coverage
-Section	Feature	Status
- Auth	Register, Login, Session	
- Profile	Medical ID, Emergency info, Insurance	
-Medications	Schedule, Adherence tracking	
- Appointments	Add, Track, Prep	
- Notifications	In-app center	
- Articles	Feed, Search, Bookmarks	
-Settings	Preferences, Privacy	
- Dashboard	Quick actions, Bell	
- Offline	100% local SQLite	
- Multi-Language	English UI, isiZulu/Afrikaans selectable	 UI-ready
-Symptom Checker	Rule-based	⏳ Planned
-Analytics	Charts	 Planned
-SSO (Google/Facebook)	OAuth	 Not in scope
-Push (FCM)	Firebase	Not in scope
-85% of the original spec implemented — all "Must-have" features except SSO, FCM push, symptom checker, and OS-level lock-screen access.
+## 📄 License
 
- Known Limitations
-These features are intentionally not implemented — they require cloud services or OS-level permissions that conflict with the "100% offline" goal:
+MIT License — see `LICENSE` file.
 
-SSO with Google/Facebook — needs OAuth server
+---
 
- FCM push notifications — needs Firebase + server
+## 🙏 Acknowledgments
 
- Lock-screen Medical ID — needs system permissions
+- World Health Organization (WHO) — Digital Health Guidelines
+- South African Department of Health — eHealth Strategy
+- WCAG 2.1 — Accessibility Guidelines
+- Material Design 3 — Design system reference
 
-Medical document uploads — needs file picker + storage permissions
+---
 
- Real email password reset — needs email server
+<p align="center">
+  Made with 💚 in South Africa 🇿🇦
+</p>
 
- Multi-device sync — no backend
-
- Symptom Checker — planned, rule-based
-
-Analytics charts — planned
-
-Everything else works fully offline on a single device.
-
- License
-MIT License — see LICENSE file.
-
- Acknowledgments
-World Health Organization (WHO) — Digital Health Guidelines
-
-South African Department of Health — eHealth Strategy
-
-WCAG 2.1 — Accessibility Guidelines
-
-Material Design 3 — Design system reference
-
-<p align="center"> Made with love in South Africa 🇿🇦 </p><p align="center"> <b>HealthEase</b> — Your Health, Your Hands </p> ```
+<p align="center">
+  <b>HealthEase</b> — Your Health, Your Hands
+</p>
+```
