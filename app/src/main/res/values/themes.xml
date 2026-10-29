@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.HealthEase_Part_2" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Base application theme. Light theme so the light teal background is always readable. -->
+    <style name="Base.Theme.HealthEase_Part_2" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/teal_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Applies the light teal background to every screen -->
+        <item name="android:windowBackground">@color/background_light</item>
     </style>
 
     <style name="Theme.HealthEase_Part_2" parent="Base.Theme.HealthEase_Part_2" />

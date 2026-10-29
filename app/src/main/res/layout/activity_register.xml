@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--registration page-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -15,7 +14,7 @@
             android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/healthease"
-            android:contentDescription="HealthEase logo"
+            android:contentDescription="@string/healthease_logo"
             android:layout_marginBottom="16dp" />
 
         <TextView
@@ -64,6 +63,13 @@
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
             android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/preferred_language"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
 
         <Spinner
             android:id="@+id/spLanguage"

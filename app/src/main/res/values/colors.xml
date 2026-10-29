@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- HealthEase palette -->
+    <color name="background_light">#DFF3F4</color>   <!-- light blue/teal page background -->
+    <color name="teal_primary">#00796B</color>       <!-- buttons and accents -->
 </resources>
