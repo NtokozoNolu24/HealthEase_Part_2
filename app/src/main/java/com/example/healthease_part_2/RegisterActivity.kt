@@ -137,6 +137,14 @@ class RegisterActivity : AppCompatActivity() {
                 etEmail.error = "This email is already registered."
                 etEmail.requestFocus()
             }
+
+            AccountStore.RegistrationResult.StorageError -> {
+                Toast.makeText(
+                    this,
+                    "Could not save your account. Please try again.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 }

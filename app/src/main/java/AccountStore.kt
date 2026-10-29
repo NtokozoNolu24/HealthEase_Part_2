@@ -1,9 +1,10 @@
+
+package com.example.healthease_part_2
+
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
+import android.util.Base64
 import java.security.MessageDigest
 import java.security.SecureRandom
-import java.util.Base64
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 
@@ -24,37 +25,42 @@ object AccountStore {
     sealed class RegistrationResult {
         data object Success : RegistrationResult()
         data object DuplicateEmail : RegistrationResult()
+        data object StorageError : RegistrationResult()
     }
 
     sealed class LoginResult {
         data class Success(val account: Account) : LoginResult()
-        data object InvalidCredentials : LoginResult()
+         object InvalidCredentials : LoginResult()
     }
 
     private fun preferences(context: Context) =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     private fun normaliseEmail(email: String) =
-        email.trim().lowercase()
+        email.trim().lowercase(java.util.Locale.ROOT)
 
     private fun deriveHash(password: CharArray, salt: ByteArray): ByteArray {
         val spec = PBEKeySpec(password, salt, ITERATIONS, KEY_LENGTH)
+
         return try {
-            SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
-                .generateSecret(spec)
-                .encoded
+            val factory = try {
+                SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+            } catch (_: java.security.NoSuchAlgorithmException) {
+                // Compatibility fallback for older Android providers.
+                SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
+            }
+
+            factory.generateSecret(spec).encoded
         } finally {
             spec.clearPassword()
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun encode(bytes: ByteArray): String =
-        Base64.getEncoder().encodeToString(bytes)
+        Base64.encodeToString(bytes, Base64.NO_WRAP)
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun decode(value: String): ByteArray =
-        Base64.getDecoder().decode(value)
+        Base64.decode(value, Base64.NO_WRAP)
 
     private fun readAccounts(context: Context): MutableMap<String, String> {
         val saved = preferences(context).getString(KEY_ACCOUNTS, null)
@@ -83,7 +89,6 @@ object AccountStore {
             .commit()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun register(
         context: Context,
         name: String,
@@ -98,29 +103,38 @@ object AccountStore {
             return RegistrationResult.DuplicateEmail
         }
 
-        val salt = ByteArray(SALT_LENGTH).also {
-            SecureRandom().nextBytes(it)
-        }
+        return try {
+            val salt = ByteArray(SALT_LENGTH).also {
+                SecureRandom().nextBytes(it)
+            }
 
-        val hash = deriveHash(password.toCharArray(), salt)
-        val stored = listOf(
-            name.trim(),
-            language,
-            encode(salt),
-            encode(hash)
-        ).joinToString(":")
+            val hash = deriveHash(password.toCharArray(), salt)
 
-        accounts[key] = stored
+            val stored = listOf(
+                Base64.encodeToString(
+                    name.trim().toByteArray(Charsets.UTF_8),
+                    Base64.NO_WRAP
+                ),
+                Base64.encodeToString(
+                    language.toByteArray(Charsets.UTF_8),
+                    Base64.NO_WRAP
+                ),
+                encode(salt),
+                encode(hash)
+            ).joinToString(":")
 
-        return if (saveAccounts(context, accounts)) {
-            RegistrationResult.Success
-        } else {
-            accounts.remove(key)
-            RegistrationResult.DuplicateEmail
+            accounts[key] = stored
+
+            if (saveAccounts(context, accounts)) {
+                RegistrationResult.Success
+            } else {
+                RegistrationResult.StorageError
+            }
+        } catch (_: Exception) {
+            RegistrationResult.StorageError
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun login(
         context: Context,
         email: String,
@@ -130,10 +144,20 @@ object AccountStore {
         val stored = readAccounts(context)[key]
             ?: return LoginResult.InvalidCredentials
 
-        val parts = stored.split(":", limit = 4)
-        if (parts.size != 4) return LoginResult.InvalidCredentials
-
         return try {
+            val parts = stored.split(":", limit = 4)
+            if (parts.size != 4) {
+                return LoginResult.InvalidCredentials
+            }
+
+            val name = String(
+                Base64.decode(parts[0], Base64.NO_WRAP),
+                Charsets.UTF_8
+            )
+            val language = String(
+                Base64.decode(parts[1], Base64.NO_WRAP),
+                Charsets.UTF_8
+            )
             val salt = decode(parts[2])
             val expectedHash = decode(parts[3])
             val actualHash = deriveHash(password.toCharArray(), salt)
@@ -143,9 +167,9 @@ object AccountStore {
             } else {
                 LoginResult.Success(
                     Account(
-                        name = parts[0],
+                        name = name,
                         email = key,
-                        language = parts[1]
+                        language = language
                     )
                 )
             }
