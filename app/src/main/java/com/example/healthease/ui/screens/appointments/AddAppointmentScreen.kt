@@ -91,7 +91,7 @@ fun AddAppointmentScreen(
 
             HealthEaseTextField(
                 value = dateText, onValueChange = { dateText = it; dateErr = null },
-                label = "Date & Time (yyyy-MM-dd HH:mm)"
+                label = "Date & Time (yyyy-MM-dd HH:mm)",
                 isError = dateErr != null, errorMessage = dateErr
             )
             Spacer(Modifier.height(14.dp))

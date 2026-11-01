@@ -56,7 +56,7 @@ fun HealthEaseTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
-    leadingEmoji: String,
+    leadingEmoji: String = "",
     isPassword: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
     isError: Boolean = false,
@@ -70,7 +70,7 @@ fun HealthEaseTextField(
             value = value,
             onValueChange = onValueChange,
             label = { Text(label) },
-            leadingIcon = { Text(leadingEmoji, fontSize = 20.sp) },
+            leadingIcon = if (leadingEmoji.isNotEmpty()) { { Text(leadingEmoji, fontSize = 20.sp) } } else null,
             trailingIcon = if (isPassword) {
                 {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
