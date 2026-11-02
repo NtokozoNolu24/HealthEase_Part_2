@@ -12,13 +12,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.credentials.Credential
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.tasks.Task
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -29,6 +33,14 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btnGoogleSignIn: Button
     private lateinit var tvCreateAccount: TextView
     private lateinit var credentialManager: CredentialManager
+
+    private val firebaseAuth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
+    private val database by lazy {
+        FirebaseDatabase.getInstance().reference
+    }
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(UserSession.applyLocale(newBase))
@@ -60,8 +72,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun loginUser() {
+
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString()
 
@@ -83,38 +95,137 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        when (val result = AccountStore.login(this, email, password)) {
-            is AccountStore.LoginResult.Success -> {
-                val account = result.account
+        btnLogin.isEnabled = false
+        btnLogin.text = "Please wait..."
 
-                UserSession.saveProfile(
-                    this,
-                    account.name,
-                    account.email,
-                    account.language
-                )
-                UserSession.logIn(this, account.email, account.name)
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
 
-                Toast.makeText(
-                    this,
-                    getString(R.string.login_successful),
-                    Toast.LENGTH_SHORT
-                ).show()
+                if (task.isSuccessful) {
 
-                openDashboard()
+                    val uid = firebaseAuth.currentUser?.uid
+
+                    if (uid == null) {
+                        showLoginError("Could not retrieve your account ID.")
+                        return@addOnCompleteListener
+                    }
+
+                    loadUserProfile(uid, email)
+
+                } else {
+
+                    btnLogin.isEnabled = true
+                    btnLogin.text = "Login"
+
+                    val errorCode =
+                        (task.exception as? com.google.firebase.auth.FirebaseAuthException)
+                            ?.errorCode
+
+                    val message = when (errorCode) {
+                        "ERROR_INVALID_EMAIL" ->
+                            "Please enter a valid email address."
+
+                        "ERROR_USER_NOT_FOUND",
+                        "ERROR_WRONG_PASSWORD",
+                        "ERROR_INVALID_CREDENTIAL" ->
+                            "Invalid email or password. Please try again."
+
+                        "ERROR_USER_DISABLED" ->
+                            "This account has been disabled."
+
+                        "ERROR_NETWORK_REQUEST_FAILED" ->
+                            "Network error. Please check your internet connection."
+
+                        else ->
+                            task.exception?.localizedMessage
+                                ?: "Login failed. Please try again."
+                    }
+
+                    Toast.makeText(
+                        this,
+                        message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
-
-            AccountStore.LoginResult.InvalidCredentials -> {
-                Toast.makeText(
-                    this,
-                    "Invalid email or password. Please try again.",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }
     }
 
+    private fun loadUserProfile(uid: String, email: String) {
+
+        database.child("users")
+            .child(uid)
+            .child("profile")
+            .get()
+            .addOnCompleteListener(this) { task ->
+
+                btnLogin.isEnabled = true
+                btnLogin.text = "Login"
+
+                if (task.isSuccessful) {
+
+                    val snapshot = task.result
+
+                    if (snapshot.exists()) {
+
+                        val name = snapshot.child("name")
+                            .getValue(String::class.java) ?: "User"
+
+                        val language = snapshot.child("language")
+                            .getValue(String::class.java) ?: "English"
+
+                        UserSession.saveProfile(
+                            this,
+                            name,
+                            email,
+                            language
+                        )
+
+                        UserSession.logIn(this, email, name)
+
+                        Toast.makeText(
+                            this,
+                            getString(R.string.login_successful),
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        openDashboard()
+
+                    } else {
+
+                        Toast.makeText(
+                            this,
+                            "Your account exists, but your profile could not be found. Please contact support.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                } else {
+
+                    Toast.makeText(
+                        this,
+                        "Could not load your profile. Please check your internet connection and try again.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+    }
+
+    private fun showLoginError(message: String) {
+        btnLogin.isEnabled = true
+        btnLogin.text = "Login"
+
+        Toast.makeText(
+            this,
+            message,
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    // Existing Google sign-in flow preserved for now.
+    // It still needs Firebase Authentication integration.
+
     private fun signInWithGoogle() {
+
         val googleOption = GetSignInWithGoogleOption.Builder(
             serverClientId = getString(R.string.default_web_client_id)
         ).build()
@@ -131,7 +242,9 @@ class LoginActivity : AppCompatActivity() {
                 )
 
                 handleGoogleSignIn(result.credential)
+
             } catch (e: Exception) {
+
                 Toast.makeText(
                     this@LoginActivity,
                     getString(R.string.google_sign_in_failed, e.message),
@@ -141,23 +254,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleGoogleSignIn(
-        credential: androidx.credentials.Credential
-    ) {
+    private fun handleGoogleSignIn(credential: Credential) {
+
         if (
             credential is CustomCredential &&
             credential.type ==
             GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
         ) {
+
             try {
                 val googleCredential =
                     GoogleIdTokenCredential.createFrom(credential.data)
 
                 val name = googleCredential.displayName ?: "User"
 
-                // This preserves your existing Google sign-in flow.
-                // For production, verify the Google ID token on a trusted
-                // backend before creating a session.
                 UserSession.logIn(this, googleCredential.id, name)
 
                 Toast.makeText(
@@ -167,14 +277,18 @@ class LoginActivity : AppCompatActivity() {
                 ).show()
 
                 openDashboard()
+
             } catch (e: GoogleIdTokenParsingException) {
+
                 Toast.makeText(
                     this,
                     getString(R.string.unable_process_google, e.message),
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
         } else {
+
             Toast.makeText(
                 this,
                 getString(R.string.unexpected_google_credential),
@@ -188,3 +302,4 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 }
+

@@ -13,6 +13,8 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -22,6 +24,20 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etConfirmPassword: EditText
     private lateinit var spLanguage: Spinner
     private lateinit var btnRegister: Button
+
+    private val firebaseAuth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
+    private val database by lazy {
+        FirebaseDatabase.getInstance().reference
+    }
+
+    // Retains the Firebase account ID if the profile save needs retrying.
+    private var createdUserId: String? = null
+    private var pendingName = ""
+    private var pendingEmail = ""
+    private var pendingLanguage = ""
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(UserSession.applyLocale(newBase))
@@ -52,14 +68,23 @@ class RegisterActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item,
             UserSession.LANGUAGES
         )
+
         adapter.setDropDownViewResource(
             android.R.layout.simple_spinner_dropdown_item
         )
+
         spLanguage.adapter = adapter
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun registerUser() {
+
+        // If Firebase already created the account, retry saving its profile.
+        if (createdUserId != null) {
+            saveUserProfile(createdUserId!!)
+            return
+        }
+
         val name = etName.text.toString().trim()
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString()
@@ -109,42 +134,121 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        when (
-            AccountStore.register(
-                this,
-                name,
-                email,
-                password,
-                language
-            )
-        ) {
-            AccountStore.RegistrationResult.Success -> {
-                UserSession.saveProfile(this, name, email, language)
+        pendingName = name
+        pendingEmail = email
+        pendingLanguage = language
 
-                Toast.makeText(
-                    this,
-                    getString(R.string.registration_successful),
-                    Toast.LENGTH_SHORT
-                ).show()
+        setRegisterButtonEnabled(false)
 
-                startActivity(
-                    Intent(this, LoginActivity::class.java)
-                )
-                finish()
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+
+                if (task.isSuccessful) {
+
+                    val uid = firebaseAuth.currentUser?.uid
+
+                    if (uid == null) {
+                        setRegisterButtonEnabled(true)
+                        Toast.makeText(
+                            this,
+                            "Account was created, but its user ID could not be retrieved.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        return@addOnCompleteListener
+                    }
+
+                    createdUserId = uid
+                    saveUserProfile(uid)
+
+                } else {
+
+                    setRegisterButtonEnabled(true)
+
+                    val errorMessage = when (
+                        (task.exception as? com.google.firebase.auth.FirebaseAuthException)?.errorCode
+                    ) {
+                        "ERROR_EMAIL_ALREADY_IN_USE" ->
+                            "This email is already registered."
+
+                        "ERROR_INVALID_EMAIL" ->
+                            "Please enter a valid email address."
+
+                        "ERROR_WEAK_PASSWORD" ->
+                            "Please choose a stronger password."
+
+                        "ERROR_NETWORK_REQUEST_FAILED" ->
+                            "Network error. Please check your internet connection."
+
+                        else ->
+                            task.exception?.localizedMessage
+                                ?: "Registration failed. Please try again."
+                    }
+
+                    Toast.makeText(
+                        this,
+                        errorMessage,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
+    }
 
-            AccountStore.RegistrationResult.DuplicateEmail -> {
-                etEmail.error = "This email is already registered."
-                etEmail.requestFocus()
-            }
+    private fun saveUserProfile(uid: String) {
 
-            AccountStore.RegistrationResult.StorageError -> {
-                Toast.makeText(
-                    this,
-                    "Could not save your account. Please try again.",
-                    Toast.LENGTH_LONG
-                ).show()
+        val profile = mapOf(
+            "name" to pendingName,
+            "email" to pendingEmail,
+            "language" to pendingLanguage
+        )
+
+        database.child("users")
+            .child(uid)
+            .child("profile")
+            .setValue(profile)
+            .addOnCompleteListener(this) { task ->
+
+                if (task.isSuccessful) {
+
+                    UserSession.saveProfile(
+                        this,
+                        pendingName,
+                        pendingEmail,
+                        pendingLanguage
+                    )
+
+                    // Registration is complete. The user can now log in.
+                    firebaseAuth.signOut()
+
+                    Toast.makeText(
+                        this,
+                        getString(R.string.registration_successful),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    startActivity(
+                        Intent(this, LoginActivity::class.java)
+                    )
+                    finish()
+
+                } else {
+
+                    setRegisterButtonEnabled(true)
+
+                    Toast.makeText(
+                        this,
+                        "Your account was created, but your profile could not be saved. Check your internet connection and tap Register again to retry.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
+    }
+
+    private fun setRegisterButtonEnabled(enabled: Boolean) {
+        btnRegister.isEnabled = enabled
+        btnRegister.text = if (enabled) {
+            "Register"
+        } else {
+            "Please wait..."
         }
     }
 }
