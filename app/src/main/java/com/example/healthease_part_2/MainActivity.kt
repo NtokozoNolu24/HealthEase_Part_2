@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
 
         // Ask for notification permission on Android 13+
-        requestNotificationPermission()
+        //requestNotificationPermission()
 
         btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
