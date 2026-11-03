@@ -1,4 +1,5 @@
 
+
 package com.example.healthease_part_2
 
 import android.content.Context
@@ -17,7 +18,6 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.lifecycle.lifecycleScope
-import com.google.android.gms.tasks.Task
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -49,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_login)
 
         etEmail = findViewById(R.id.etLoginEmail)
@@ -182,6 +183,9 @@ class LoginActivity : AppCompatActivity() {
 
                         UserSession.logIn(this, email, name)
 
+                        // Save this device's Firebase Cloud Messaging token.
+                        FcmTokenManager.saveCurrentToken()
+
                         Toast.makeText(
                             this,
                             getString(R.string.login_successful),
@@ -211,6 +215,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showLoginError(message: String) {
+
         btnLogin.isEnabled = true
         btnLogin.text = "Login"
 
@@ -221,8 +226,8 @@ class LoginActivity : AppCompatActivity() {
         ).show()
     }
 
-    // Existing Google sign-in flow preserved for now.
-    // It still needs Firebase Authentication integration.
+    // Existing Google sign-in flow preserved.
+    // Firebase Authentication integration is still pending.
 
     private fun signInWithGoogle() {
 
@@ -236,6 +241,7 @@ class LoginActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
+
                 val result = credentialManager.getCredential(
                     context = this@LoginActivity,
                     request = request
@@ -263,6 +269,7 @@ class LoginActivity : AppCompatActivity() {
         ) {
 
             try {
+
                 val googleCredential =
                     GoogleIdTokenCredential.createFrom(credential.data)
 
@@ -302,4 +309,3 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 }
-
