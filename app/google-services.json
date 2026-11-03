@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "109540700535",
+    "firebase_url": "https://healthease-7cc9e-default-rtdb.firebaseio.com",
     "project_id": "healthease-7cc9e",
     "storage_bucket": "healthease-7cc9e.firebasestorage.app"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.healthease_part_2"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "109540700535-ks393fultqlllupeto9fp0mult7d3dcv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.healthease_part_2",
+            "certificate_hash": "f72c87fb9b0c97ff5eb45f94c392e4111dbb291c"
+          }
+        },
+        {
+          "client_id": "109540700535-sedu6qjfvre13lkf18ulscshmaj85900.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBw1FwJHWu-LEGCEUHBZ5llVK4VOUbZKxo"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109540700535-sedu6qjfvre13lkf18ulscshmaj85900.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
