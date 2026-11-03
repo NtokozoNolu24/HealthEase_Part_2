@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Internet access for Firebase -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Notifications on Android 13 and newer -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".HealthEaseApplication"
@@ -15,12 +19,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthEase_Part_2">
 
+        <!-- Firebase Cloud Messaging service -->
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+
+        </service>
+
+        <!-- Application activities -->
         <activity
             android:name=".MedicationReminderActivity"
             android:exported="false" />
 
         <activity
             android:name=".AppointmentReminderActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ProfileActivity"
             android:exported="false" />
 
         <activity
