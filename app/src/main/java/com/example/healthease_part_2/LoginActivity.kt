@@ -1,17 +1,14 @@
 
-
 package com.example.healthease_part_2
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.credentials.Credential
 import androidx.credentials.CredentialManager
@@ -22,6 +19,7 @@ import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.launch
 
@@ -46,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
         super.attachBaseContext(UserSession.applyLocale(newBase))
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -72,6 +69,8 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
+
+    // EMAIL AND PASSWORD LOGIN
 
     private fun loginUser() {
 
@@ -115,38 +114,10 @@ class LoginActivity : AppCompatActivity() {
 
                 } else {
 
-                    btnLogin.isEnabled = true
-                    btnLogin.text = "Login"
-
-                    val errorCode =
-                        (task.exception as? com.google.firebase.auth.FirebaseAuthException)
-                            ?.errorCode
-
-                    val message = when (errorCode) {
-                        "ERROR_INVALID_EMAIL" ->
-                            "Please enter a valid email address."
-
-                        "ERROR_USER_NOT_FOUND",
-                        "ERROR_WRONG_PASSWORD",
-                        "ERROR_INVALID_CREDENTIAL" ->
-                            "Invalid email or password. Please try again."
-
-                        "ERROR_USER_DISABLED" ->
-                            "This account has been disabled."
-
-                        "ERROR_NETWORK_REQUEST_FAILED" ->
-                            "Network error. Please check your internet connection."
-
-                        else ->
-                            task.exception?.localizedMessage
-                                ?: "Login failed. Please try again."
-                    }
-
-                    Toast.makeText(
-                        this,
-                        message,
-                        Toast.LENGTH_LONG
-                    ).show()
+                    showLoginError(
+                        task.exception?.localizedMessage
+                            ?: "Login failed. Please try again."
+                    )
                 }
             }
     }
@@ -158,9 +129,6 @@ class LoginActivity : AppCompatActivity() {
             .child("profile")
             .get()
             .addOnCompleteListener(this) { task ->
-
-                btnLogin.isEnabled = true
-                btnLogin.text = "Login"
 
                 if (task.isSuccessful) {
 
@@ -174,65 +142,31 @@ class LoginActivity : AppCompatActivity() {
                         val language = snapshot.child("language")
                             .getValue(String::class.java) ?: "English"
 
-                        UserSession.saveProfile(
-                            this,
-                            name,
-                            email,
-                            language
-                        )
-
-                        UserSession.logIn(this, email, name)
-
-                        // Save this device's Firebase Cloud Messaging token.
-                        FcmTokenManager.saveCurrentToken()
-
-                        Toast.makeText(
-                            this,
-                            getString(R.string.login_successful),
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        openDashboard()
+                        completeLogin(name, email, language)
 
                     } else {
-
-                        Toast.makeText(
-                            this,
-                            "Your account exists, but your profile could not be found. Please contact support.",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        showLoginError(
+                            "Your account exists, but your profile could not be found."
+                        )
                     }
 
                 } else {
-
-                    Toast.makeText(
-                        this,
-                        "Could not load your profile. Please check your internet connection and try again.",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    showLoginError(
+                        "Could not load your profile. Please check your internet connection."
+                    )
                 }
             }
     }
 
-    private fun showLoginError(message: String) {
-
-        btnLogin.isEnabled = true
-        btnLogin.text = "Login"
-
-        Toast.makeText(
-            this,
-            message,
-            Toast.LENGTH_LONG
-        ).show()
-    }
-
-    // Existing Google sign-in flow preserved.
-    // Firebase Authentication integration is still pending.
+    // GOOGLE SIGN-IN
 
     private fun signInWithGoogle() {
 
+        btnGoogleSignIn.isEnabled = false
+        btnGoogleSignIn.text = "Connecting..."
+
         val googleOption = GetSignInWithGoogleOption.Builder(
-            serverClientId = getString(R.string.default_web_client_id)
+            getString(R.string.default_web_client_id)
         ).build()
 
         val request = GetCredentialRequest.Builder()
@@ -240,6 +174,7 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         lifecycleScope.launch {
+
             try {
 
                 val result = credentialManager.getCredential(
@@ -251,11 +186,9 @@ class LoginActivity : AppCompatActivity() {
 
             } catch (e: Exception) {
 
-                Toast.makeText(
-                    this@LoginActivity,
-                    getString(R.string.google_sign_in_failed, e.message),
-                    Toast.LENGTH_LONG
-                ).show()
+                showGoogleError(
+                    e.localizedMessage ?: "Google Sign-In was cancelled or failed."
+                )
             }
         }
     }
@@ -273,38 +206,179 @@ class LoginActivity : AppCompatActivity() {
                 val googleCredential =
                     GoogleIdTokenCredential.createFrom(credential.data)
 
+                val idToken = googleCredential.idToken
+                val email = googleCredential.id
                 val name = googleCredential.displayName ?: "User"
 
-                UserSession.logIn(this, googleCredential.id, name)
-
-                Toast.makeText(
-                    this,
-                    getString(R.string.welcome_user, name),
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                openDashboard()
+                authenticateWithFirebase(idToken, email, name)
 
             } catch (e: GoogleIdTokenParsingException) {
 
-                Toast.makeText(
-                    this,
-                    getString(R.string.unable_process_google, e.message),
-                    Toast.LENGTH_SHORT
-                ).show()
+                showGoogleError(
+                    e.localizedMessage ?: "Could not process Google credentials."
+                )
             }
 
         } else {
-
-            Toast.makeText(
-                this,
-                getString(R.string.unexpected_google_credential),
-                Toast.LENGTH_SHORT
-            ).show()
+            showGoogleError("Unexpected Google credential. Please try again.")
         }
     }
 
+    // EXCHANGE GOOGLE TOKEN FOR FIREBASE AUTHENTICATION
+
+    private fun authenticateWithFirebase(
+        idToken: String,
+        email: String,
+        name: String
+    ) {
+
+        val firebaseCredential =
+            GoogleAuthProvider.getCredential(idToken, null)
+
+        firebaseAuth.signInWithCredential(firebaseCredential)
+            .addOnCompleteListener(this) { task ->
+
+                if (task.isSuccessful) {
+
+                    val uid = firebaseAuth.currentUser?.uid
+
+                    if (uid == null) {
+                        showGoogleError("Could not retrieve your Firebase account ID.")
+                        return@addOnCompleteListener
+                    }
+
+                    loadOrCreateGoogleProfile(uid, email, name)
+
+                } else {
+
+                    showGoogleError(
+                        task.exception?.localizedMessage
+                            ?: "Firebase Google authentication failed."
+                    )
+                }
+            }
+    }
+
+    // LOAD EXISTING PROFILE OR CREATE A NEW ONE
+
+    private fun loadOrCreateGoogleProfile(
+        uid: String,
+        email: String,
+        googleName: String
+    ) {
+
+        val profileReference = database.child("users")
+            .child(uid)
+            .child("profile")
+
+        profileReference.get()
+            .addOnCompleteListener(this) { task ->
+
+                if (task.isSuccessful) {
+
+                    val snapshot = task.result
+
+                    if (snapshot.exists()) {
+
+                        val name = snapshot.child("name")
+                            .getValue(String::class.java) ?: googleName
+
+                        val language = snapshot.child("language")
+                            .getValue(String::class.java) ?: "English"
+
+                        completeLogin(name, email, language)
+
+                    } else {
+
+                        val newProfile = mapOf(
+                            "name" to googleName,
+                            "email" to email,
+                            "language" to "English"
+                        )
+
+                        profileReference.setValue(newProfile)
+                            .addOnCompleteListener(this) { saveTask ->
+
+                                if (saveTask.isSuccessful) {
+
+                                    completeLogin(
+                                        googleName,
+                                        email,
+                                        "English"
+                                    )
+
+                                } else {
+
+                                    showGoogleError(
+                                        "Your Google account was authenticated, but your profile could not be saved."
+                                    )
+                                }
+                            }
+                    }
+
+                } else {
+
+                    showGoogleError(
+                        "Could not load your Firebase profile. Check your internet connection."
+                    )
+                }
+            }
+    }
+
+    // COMPLETE LOGIN FOR BOTH METHODS
+
+    private fun completeLogin(
+        name: String,
+        email: String,
+        language: String
+    ) {
+
+        UserSession.saveProfile(
+            this,
+            name,
+            email,
+            language
+        )
+
+        UserSession.logIn(this, email, name)
+
+        FcmTokenManager.saveCurrentToken()
+
+        Toast.makeText(
+            this,
+            "Welcome, $name!",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        openDashboard()
+    }
+
+    private fun showLoginError(message: String) {
+
+        btnLogin.isEnabled = true
+        btnLogin.text = "Login"
+
+        Toast.makeText(
+            this,
+            message,
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    private fun showGoogleError(message: String) {
+
+        btnGoogleSignIn.isEnabled = true
+        btnGoogleSignIn.text = "Sign in with Google"
+
+        Toast.makeText(
+            this,
+            message,
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
     private fun openDashboard() {
+
         startActivity(Intent(this, DashboardActivity::class.java))
         finish()
     }

@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F8FA"
+    android:background="@color/settings_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -11,11 +11,12 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+        <!-- Page heading -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Settings"
-            android:textColor="#123B50"
+            android:textColor="@color/settings_heading"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -25,7 +26,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginBottom="22dp"
             android:text="Personalise your HealthEase experience"
-            android:textColor="#71818B"
+            android:textColor="@color/settings_body"
             android:textSize="14sp" />
 
         <!-- Language -->
@@ -33,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Language and Region"
-            android:textColor="#123B50"
+            android:textColor="@color/settings_heading"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="10dp" />
@@ -43,13 +44,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:background="#FFFFFF">
+            android:background="@color/settings_card">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="App language"
-                android:textColor="#123B50"
+                android:textColor="@color/settings_heading"
                 android:textStyle="bold"
                 android:textSize="15sp" />
 
@@ -65,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Appearance"
-            android:textColor="#123B50"
+            android:textColor="@color/settings_heading"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"
@@ -76,14 +77,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:background="#FFFFFF">
+            android:background="@color/settings_card">
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchDarkMode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Dark mode"
-                android:textColor="#123B50"
+                android:textColor="@color/settings_heading"
                 android:padding="8dp" />
 
         </LinearLayout>
@@ -93,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Notifications"
-            android:textColor="#123B50"
+            android:textColor="@color/settings_heading"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"
@@ -104,14 +105,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:background="#FFFFFF">
+            android:background="@color/settings_card">
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchNotifications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/enable_notifications"
-                android:textColor="#123B50"
+                android:textColor="@color/settings_heading"
                 android:padding="8dp"
                 android:checked="true" />
 
@@ -120,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/medication_reminders"
-                android:textColor="#123B50"
+                android:textColor="@color/settings_heading"
                 android:padding="8dp"
                 android:checked="true" />
 
@@ -129,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/appointment_reminders"
-                android:textColor="#123B50"
+                android:textColor="@color/settings_heading"
                 android:padding="8dp"
                 android:checked="true" />
         </LinearLayout>
@@ -139,7 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Accessibility"
-            android:textColor="#123B50"
+            android:textColor="@color/settings_heading"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"
@@ -150,13 +151,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:background="#FFFFFF">
+            android:background="@color/settings_card">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Text size"
-                android:textColor="#123B50"
+                android:textColor="@color/settings_heading"
                 android:textStyle="bold"
                 android:textSize="15sp" />
 
@@ -173,7 +174,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Information"
-            android:textColor="#123B50"
+            android:textColor="@color/settings_heading"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"
@@ -184,13 +185,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:background="#FFFFFF">
+            android:background="@color/settings_card">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Privacy and Security"
-                android:textColor="#123B50"
+                android:textColor="@color/settings_heading"
                 android:textSize="15sp"
                 android:padding="8dp" />
 
@@ -198,12 +199,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="About HealthEase"
-                android:textColor="#123B50"
+                android:textColor="@color/settings_heading"
                 android:textSize="15sp"
                 android:padding="8dp" />
 
         </LinearLayout>
 
+        <!-- Save -->
         <Button
             android:id="@+id/btnSaveSettings"
             android:layout_width="match_parent"
@@ -211,6 +213,7 @@
             android:layout_marginTop="24dp"
             android:text="@string/save_changes" />
 
+        <!-- Back -->
         <Button
             android:id="@+id/btnBack"
             style="@style/Widget.Material3.Button.OutlinedButton"
@@ -221,4 +224,5 @@
 
     </LinearLayout>
 </ScrollView>
+
 

@@ -26,21 +26,12 @@ object UserSession {
     private const val KEY_DARK_MODE = "dark_mode"
     private const val KEY_TEXT_SIZE = "text_size"
 
+    // Four supported application languages
     val LANGUAGES = listOf(
         "English",
         "isiZulu",
-        "isiXhosa",
-        "Sesotho",
-        "Setswana",
-        "Sepedi",
-        "Tshivenda",
-        "itsonga",
-        "siSwati",
-        "isiNdebele",
         "Afrikaans",
-        "French",
-        "Portuguese",
-        "Spanish"
+        "isiXhosa"
     )
 
     val TEXT_SIZES = listOf(
@@ -62,7 +53,10 @@ object UserSession {
         prefs(context).edit()
             .putString(KEY_NAME, name)
             .putString(KEY_EMAIL, email)
-            .putString(KEY_LANGUAGE, language)
+            .putString(
+                KEY_LANGUAGE,
+                if (LANGUAGES.contains(language)) language else LANGUAGES[0]
+            )
             .apply()
     }
 
@@ -77,12 +71,18 @@ object UserSession {
         textSize: String = getTextSize(context)
     ) {
         prefs(context).edit()
-            .putString(KEY_LANGUAGE, language)
+            .putString(
+                KEY_LANGUAGE,
+                if (LANGUAGES.contains(language)) language else LANGUAGES[0]
+            )
             .putBoolean(KEY_NOTIF_ENABLED, notifEnabled)
             .putBoolean(KEY_MED_REMINDER_ENABLED, medEnabled)
             .putBoolean(KEY_APP_REMINDER_ENABLED, appEnabled)
             .putBoolean(KEY_DARK_MODE, darkMode)
-            .putString(KEY_TEXT_SIZE, textSize)
+            .putString(
+                KEY_TEXT_SIZE,
+                if (TEXT_SIZES.contains(textSize)) textSize else "Medium"
+            )
             .apply()
     }
 
@@ -140,8 +140,14 @@ object UserSession {
         prefs(context).getString(KEY_EMAIL, "") ?: ""
 
     // Get selected language
-    fun getLanguage(context: Context): String =
-        prefs(context).getString(KEY_LANGUAGE, LANGUAGES[0]) ?: LANGUAGES[0]
+    fun getLanguage(context: Context): String {
+        val savedLanguage = prefs(context).getString(KEY_LANGUAGE, LANGUAGES[0])
+        return if (LANGUAGES.contains(savedLanguage)) {
+            savedLanguage ?: LANGUAGES[0]
+        } else {
+            LANGUAGES[0]
+        }
+    }
 
     // Notification settings
     fun isNotificationsEnabled(context: Context): Boolean =
@@ -163,34 +169,27 @@ object UserSession {
     // Display name
     fun displayName(context: Context): String {
         val name = getName(context)
+
         if (name.isNotEmpty()) return name
 
         val fromEmail = getEmail(context).substringBefore("@")
+
         return if (fromEmail.isNotEmpty()) fromEmail else "there"
     }
 
     // Apply selected application language
     fun applyLocale(context: Context): Context {
 
-        val languageCode = when (getLanguage(context)) {
+        val languageTag = when (getLanguage(context)) {
             "English" -> "en"
             "isiZulu" -> "zu"
-            "isiXhosa" -> "xh"
-            "Sesotho" -> "st"
-            "Setswana" -> "tn"
-            "Sepedi" -> "nso"
-            "Tshivenda" -> "ve"
-            "itsonga" -> "ts"
-            "siSwati" -> "ss"
-            "isiNdebele" -> "nr"
             "Afrikaans" -> "af"
-            "French" -> "fr"
-            "Portuguese" -> "pt"
-            "Spanish" -> "es"
+            "isiXhosa" -> "xh"
             else -> "en"
         }
 
-        val locale = Locale(languageCode)
+        val locale = Locale.forLanguageTag(languageTag)
+
         Locale.setDefault(locale)
 
         val config = Configuration(context.resources.configuration)
