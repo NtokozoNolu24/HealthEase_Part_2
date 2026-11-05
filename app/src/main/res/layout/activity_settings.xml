@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="@string/settings"
             android:textColor="@color/settings_heading"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="22dp"
-            android:text="Personalise your HealthEase experience"
+            android:text="@string/settings_subtitle"
             android:textColor="@color/settings_body"
             android:textSize="14sp" />
 
@@ -33,26 +33,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Language and Region"
+            android:layout_marginBottom="10dp"
+            android:text="@string/language_and_region"
             android:textColor="@color/settings_heading"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/settings_card"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@color/settings_card">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="App language"
+                android:text="@string/app_language"
                 android:textColor="@color/settings_heading"
-                android:textStyle="bold"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spLanguage"
@@ -65,27 +65,27 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Appearance"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/appearance"
             android:textColor="@color/settings_heading"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="10dp" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/settings_card"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@color/settings_card">
+            android:padding="16dp">
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchDarkMode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dark mode"
-                android:textColor="@color/settings_heading"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="@string/dark_mode"
+                android:textColor="@color/settings_heading" />
 
         </LinearLayout>
 
@@ -93,78 +93,79 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Notifications"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/notifications"
             android:textColor="@color/settings_heading"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="10dp" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/settings_card"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@color/settings_card">
+            android:padding="16dp">
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchNotifications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/enable_notifications"
-                android:textColor="@color/settings_heading"
+                android:checked="true"
                 android:padding="8dp"
-                android:checked="true" />
+                android:text="@string/enable_notifications"
+                android:textColor="@color/settings_heading" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchMedication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/medication_reminders"
-                android:textColor="@color/settings_heading"
+                android:checked="true"
                 android:padding="8dp"
-                android:checked="true" />
+                android:text="@string/medication_reminders"
+                android:textColor="@color/settings_heading" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchAppointments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/appointment_reminders"
-                android:textColor="@color/settings_heading"
+                android:checked="true"
                 android:padding="8dp"
-                android:checked="true" />
+                android:text="@string/appointment_reminders"
+                android:textColor="@color/settings_heading" />
         </LinearLayout>
 
         <!-- Accessibility -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Accessibility"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/accessibility"
             android:textColor="@color/settings_heading"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="10dp" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/settings_card"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@color/settings_card">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Text size"
+                android:text="@string/text_size"
                 android:textColor="@color/settings_heading"
-                android:textStyle="bold"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spTextSize"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:layout_marginTop="8dp"
                 android:entries="@array/text_size_options" />
 
         </LinearLayout>
@@ -173,35 +174,35 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Information"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/information"
             android:textColor="@color/settings_heading"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="10dp" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/settings_card"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@color/settings_card">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Privacy and Security"
+                android:padding="8dp"
+                android:text="@string/privacy_security"
                 android:textColor="@color/settings_heading"
-                android:textSize="15sp"
-                android:padding="8dp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="About HealthEase"
+                android:padding="8dp"
+                android:text="@string/about_healthease"
                 android:textColor="@color/settings_heading"
-                android:textSize="15sp"
-                android:padding="8dp" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -224,5 +225,3 @@
 
     </LinearLayout>
 </ScrollView>
-
-

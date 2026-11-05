@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F8FA"
-    android:fillViewport="true"
-    android:clipToPadding="false">
+    android:background="@color/dash_background"
+    android:clipToPadding="false"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,9 +17,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginBottom="24dp">
+            android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="52dp"
@@ -40,23 +40,23 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="12dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HealthEase"
-                    android:textColor="#087E75"
+                    android:text="@string/healthease"
+                    android:textColor="@color/dash_brand"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your health companion"
-                    android:textColor="#718096"
+                    android:text="@string/dashboard_tagline"
+                    android:textColor="@color/dash_muted"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -64,10 +64,10 @@
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:contentDescription="Health"
-                android:src="@drawable/healthease"
+                android:alpha="0.8"
+                android:contentDescription="@null"
                 android:scaleType="centerInside"
-                android:alpha="0.8" />
+                android:src="@drawable/healthease" />
 
         </LinearLayout>
 
@@ -90,10 +90,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="YOUR WELLNESS JOURNEY"
+                    android:letterSpacing="0.12"
+                    android:text="@string/wellness_journey"
                     android:textColor="#BDECE4"
                     android:textSize="11sp"
-                    android:letterSpacing="0.12"
                     android:textStyle="bold" />
 
                 <TextView
@@ -110,10 +110,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4dp"
                     android:text="@string/dashboard_subtitle"
                     android:textColor="#E0F7F3"
-                    android:textSize="15sp"
-                    android:lineSpacingExtra="4dp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -124,8 +124,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:text="Your health at a glance"
-            android:textColor="#183B45"
+            android:text="@string/health_glance"
+            android:textColor="@color/dash_heading"
             android:textSize="21sp"
             android:textStyle="bold" />
 
@@ -133,8 +133,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            android:text="Choose a service to get started."
-            android:textColor="#718096"
+            android:text="@string/choose_service"
+            android:textColor="@color/dash_muted"
             android:textSize="14sp" />
 
         <!-- Medication reminders -->
@@ -142,10 +142,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
-            app:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="@color/dash_card"
             app:cardCornerRadius="18dp"
             app:cardElevation="1dp"
-            app:strokeColor="#E1ECEE"
+            app:strokeColor="@color/dash_stroke"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -158,10 +158,10 @@
                 <TextView
                     android:layout_width="54dp"
                     android:layout_height="54dp"
-                    android:background="#E2F4F1"
+                    android:background="@color/tile_rx"
                     android:gravity="center"
                     android:text="Rx"
-                    android:textColor="#087E75"
+                    android:textColor="@color/icon_rx"
                     android:textSize="21sp"
                     android:textStyle="bold" />
 
@@ -176,7 +176,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/medication_reminders"
-                        android:textColor="#183B45"
+                        android:textColor="@color/dash_heading"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -184,8 +184,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Keep track of your medication"
-                        android:textColor="#718096"
+                        android:text="@string/medication_desc"
+                        android:textColor="@color/dash_muted"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -198,7 +198,7 @@
                     android:minHeight="48dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:text="Open"
+                    android:text="@string/open"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     app:backgroundTint="#087E75"
@@ -213,10 +213,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
-            app:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="@color/dash_card"
             app:cardCornerRadius="18dp"
             app:cardElevation="1dp"
-            app:strokeColor="#E1ECEE"
+            app:strokeColor="@color/dash_stroke"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -229,10 +229,10 @@
                 <TextView
                     android:layout_width="54dp"
                     android:layout_height="54dp"
-                    android:background="#E8F0FF"
+                    android:background="@color/tile_cal"
                     android:gravity="center"
                     android:text="31"
-                    android:textColor="#3267A8"
+                    android:textColor="@color/icon_cal"
                     android:textSize="21sp"
                     android:textStyle="bold" />
 
@@ -247,7 +247,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/appointment_reminders"
-                        android:textColor="#183B45"
+                        android:textColor="@color/dash_heading"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -255,8 +255,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Stay organised with your visits"
-                        android:textColor="#718096"
+                        android:text="@string/appointment_desc"
+                        android:textColor="@color/dash_muted"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -269,7 +269,7 @@
                     android:minHeight="48dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:text="Open"
+                    android:text="@string/open"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     app:backgroundTint="#3267A8"
@@ -284,10 +284,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
-            app:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="@color/dash_card"
             app:cardCornerRadius="18dp"
             app:cardElevation="1dp"
-            app:strokeColor="#E1ECEE"
+            app:strokeColor="@color/dash_stroke"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -300,10 +300,10 @@
                 <TextView
                     android:layout_width="54dp"
                     android:layout_height="54dp"
-                    android:background="#F1E9FF"
+                    android:background="@color/tile_me"
                     android:gravity="center"
                     android:text="Me"
-                    android:textColor="#7952AC"
+                    android:textColor="@color/icon_me"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -318,7 +318,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/my_profile"
-                        android:textColor="#183B45"
+                        android:textColor="@color/dash_heading"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -326,8 +326,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Manage your personal details"
-                        android:textColor="#718096"
+                        android:text="@string/profile_desc"
+                        android:textColor="@color/dash_muted"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -340,7 +340,7 @@
                     android:minHeight="48dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:text="Open"
+                    android:text="@string/open"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     app:backgroundTint="#7952AC"
@@ -355,10 +355,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="@color/dash_card"
             app:cardCornerRadius="18dp"
             app:cardElevation="1dp"
-            app:strokeColor="#E1ECEE"
+            app:strokeColor="@color/dash_stroke"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -371,10 +371,10 @@
                 <TextView
                     android:layout_width="54dp"
                     android:layout_height="54dp"
-                    android:background="#FFF0E1"
+                    android:background="@color/tile_settings"
                     android:gravity="center"
                     android:text="⚙"
-                    android:textColor="#A45A19"
+                    android:textColor="@color/icon_settings"
                     android:textSize="25sp" />
 
                 <LinearLayout
@@ -388,7 +388,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/setting"
-                        android:textColor="#183B45"
+                        android:textColor="@color/dash_heading"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -396,8 +396,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Customise your experience"
-                        android:textColor="#718096"
+                        android:text="@string/settings_desc"
+                        android:textColor="@color/dash_muted"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -410,7 +410,7 @@
                     android:minHeight="48dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:text="Open"
+                    android:text="@string/open"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     app:backgroundTint="#A45A19"
@@ -428,9 +428,9 @@
             android:layout_height="54dp"
             android:text="@string/logout"
             android:textAllCaps="false"
-            android:textColor="#B42318"
+            android:textColor="@color/dash_logout"
             app:cornerRadius="14dp"
-            app:strokeColor="#E7B7B3"
+            app:strokeColor="@color/dash_logout_stroke"
             app:strokeWidth="1dp" />
 
         <TextView
@@ -439,11 +439,10 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:paddingBottom="12dp"
-            android:text="HealthEase • Your health matters"
-            android:textColor="#8999A5"
+            android:text="@string/footer_tagline"
+            android:textColor="@color/dash_muted"
             android:textSize="12sp" />
 
     </LinearLayout>
 
 </ScrollView>
-

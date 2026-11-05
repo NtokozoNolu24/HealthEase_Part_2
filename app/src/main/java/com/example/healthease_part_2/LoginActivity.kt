@@ -1,19 +1,20 @@
-
 package com.example.healthease_part_2
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+
 import androidx.credentials.Credential
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
+import androidx.credentials.exceptions.GetCredentialCancellationException
+import androidx.credentials.exceptions.NoCredentialException
 import androidx.lifecycle.lifecycleScope
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
@@ -23,7 +24,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.launch
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
@@ -38,10 +39,6 @@ class LoginActivity : AppCompatActivity() {
 
     private val database by lazy {
         FirebaseDatabase.getInstance().reference
-    }
-
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(UserSession.applyLocale(newBase))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.isEnabled = false
-        btnLogin.text = "Please wait..."
+        btnLogin.text = getString(R.string.please_wait)
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -163,7 +160,7 @@ class LoginActivity : AppCompatActivity() {
     private fun signInWithGoogle() {
 
         btnGoogleSignIn.isEnabled = false
-        btnGoogleSignIn.text = "Connecting..."
+        btnGoogleSignIn.text = getString(R.string.connecting)
 
         val googleOption = GetSignInWithGoogleOption.Builder(
             getString(R.string.default_web_client_id)
@@ -184,10 +181,27 @@ class LoginActivity : AppCompatActivity() {
 
                 handleGoogleSignIn(result.credential)
 
+            } catch (e: GetCredentialCancellationException) {
+
+                // The person closed the Google sheet, so just reset the button
+                resetGoogleButton()
+
+            } catch (e: NoCredentialException) {
+
+                Log.e("HealthEaseGoogle", "No Google account on this device", e)
+                showGoogleError(getString(R.string.no_google_account))
+
             } catch (e: Exception) {
 
+                Log.e(
+                    "HealthEaseGoogle",
+                    "Credential Manager sign-in failed",
+                    e
+                )
+
                 showGoogleError(
-                    e.localizedMessage ?: "Google Sign-In was cancelled or failed."
+                    "${e.javaClass.simpleName}: " +
+                            (e.localizedMessage ?: "Unknown error")
                 )
             }
         }
@@ -346,7 +360,7 @@ class LoginActivity : AppCompatActivity() {
 
         Toast.makeText(
             this,
-            "Welcome, $name!",
+            getString(R.string.welcome_user, name),
             Toast.LENGTH_SHORT
         ).show()
 
@@ -356,7 +370,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoginError(message: String) {
 
         btnLogin.isEnabled = true
-        btnLogin.text = "Login"
+        btnLogin.text = getString(R.string.login)
 
         Toast.makeText(
             this,
@@ -365,10 +379,14 @@ class LoginActivity : AppCompatActivity() {
         ).show()
     }
 
+    private fun resetGoogleButton() {
+        btnGoogleSignIn.isEnabled = true
+        btnGoogleSignIn.text = getString(R.string.sign_in_with_google)
+    }
+
     private fun showGoogleError(message: String) {
 
-        btnGoogleSignIn.isEnabled = true
-        btnGoogleSignIn.text = "Sign in with Google"
+        resetGoogleButton()
 
         Toast.makeText(
             this,

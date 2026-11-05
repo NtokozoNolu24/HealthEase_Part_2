@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HealthEase</string>
-    <string name="healthease">HealthEase</string>
     <string name="personal_healthcare_management">Ulawulo lokhathalelo lwempilo yakho</string>
     <string name="register">Bhalisa</string>
     <string name="create_your_account">Yenza iakhawunti yakho</string>
@@ -60,18 +58,46 @@
     <string name="notifications">Izaziso</string>
     <string name="reminder_time">Ixesha lesikhumbuzo</string>
     <string name="save_settings">Gcina iisetingi</string>
+
+    <!-- Login and registration -->
     <string name="login_successful">Ungene ngempumelelo</string>
     <string name="please_enter_email">Nceda ufake idilesi ye-imeyile</string>
     <string name="please_enter_valid_email">Nceda ufake idilesi ye-imeyile esebenzayo</string>
     <string name="please_enter_password">Nceda ufake igama lokugqitha</string>
-    <string name="password_too_short">Igama lokugqitha kufuneka libe noonobumba abayi-6 ubuncinane</string>
+    <string name="password_too_short">Igama lokugqitha kufuneka libe noonobumba abayi-8 ubuncinane</string>
     <string name="google_sign_in_failed">Ukungena ngeGoogle akuphumelelanga: %1$s</string>
     <string name="unable_process_google">Ayikwazanga ukuqhubekekisa ukungena ngeGoogle: %1$s</string>
     <string name="unexpected_google_credential">Isiqinisekiso sokungena ngeGoogle esingalindelekanga</string>
-    <string name="dont_have_account">Awunayo iakhawunti?</string>
+    <string name="dont_have_account">Awunayo iakhawunti? Yenza enye</string>
     <string name="registration_successful">Ubhalise ngempumelelo</string>
     <string name="passwords_dont_match">Amagama okugqitha awahambelani</string>
     <string name="login_to_your_account">Ngena kwiakhawunti yakho</string>
     <string name="sign_in_with_google">Ngena ngeGoogle</string>
     <string name="welcome_back">Wamkelekile kwakhona</string>
+
+    <!-- Settings screen -->
+    <string name="settings_subtitle">Hlengahlengisa amava akho e-HealthEase</string>
+    <string name="language_and_region">Ulwimi nommandla</string>
+    <string name="app_language">Ulwimi lwe-app</string>
+    <string name="appearance">Imbonakalo</string>
+    <string name="dark_mode">Imowudi emnyama</string>
+    <string name="accessibility">Ukufikeleleka</string>
+    <string name="text_size">Ubungakanani bombhalo</string>
+    <string name="information">Ulwazi</string>
+    <string name="privacy_security">Ubumfihlo nokhuseleko</string>
+    <string name="about_healthease">Malunga ne-HealthEase</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_tagline">Umhlobo wakho wezempilo</string>
+    <string name="wellness_journey">UHAMBO LWAKHO LWEMPILO</string>
+    <string name="health_glance">Isishwankathelo sempilo yakho</string>
+    <string name="choose_service">Khetha inkonzo ukuze uqale.</string>
+    <string name="medication_desc">Landela amayeza akho</string>
+    <string name="appointment_desc">Hlela amadinga akho</string>
+    <string name="profile_desc">Lawula iinkcukacha zakho</string>
+    <string name="settings_desc">Hlengahlengisa amava akho</string>
+    <string name="open">Vula</string>
+    <string name="footer_tagline">HealthEase • Impilo yakho ibalulekile</string>
+    <string name="or_divider">OKANYE</string>
+
 </resources>

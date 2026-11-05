@@ -10,13 +10,13 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ValueEventListener
 import java.util.Calendar
 import java.util.Locale
 
-class AppointmentReminderActivity : AppCompatActivity() {
+class AppointmentReminderActivity : BaseActivity() {
 
     private lateinit var etAppointmentName: EditText
     private lateinit var btnSelectDate: Button
