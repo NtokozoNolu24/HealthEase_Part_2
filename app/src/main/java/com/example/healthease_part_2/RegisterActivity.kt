@@ -12,11 +12,11 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : BaseActivity() {
 
     private lateinit var etName: EditText
     private lateinit var etEmail: EditText

@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">HealthEase_Part_2</string>
-    <string name="healthease">HealthEase</string>
+    <string name="healthease_logo">Uphawu lwe-HealthEase</string>
+
     <string name="personal_healthcare_management">Ukuphathwa kwezempilo komuntu siqu</string>
     <string name="register">Bhalisa</string>
     <string name="create_your_account">Dala i-akhawunti yakho</string>
@@ -53,9 +53,56 @@
     <string name="please_enter_medication">Sicela ufake igama lomuthi</string>
     <string name="please_select_time">Sicela ukhethe isikhathi sesikhumbuzi</string>
     <string name="medication_saved">Isikhumbuzi somuthi sigciniwe</string>
-    <string name="reminder_format">%1$s\n%2$s nge- %3$s</string>
+    <string name="reminder_format">%1$s\n%2$s ngo-%3$s</string>
     <string name="settings_saved">Izilungiselelo zigciniwe</string>
     <string name="enable_notifications">Vumela izaziso</string>
     <string name="language">Ulimi</string>
     <string name="notifications">Izaziso</string>
+    <string name="reminder_time">Isikhathi sesikhumbuzo</string>
+    <string name="save_settings">Londoloza izilungiselelo</string>
+
+    <!-- Login and registration -->
+    <string name="login_successful">Ukungena kuphumelele</string>
+    <string name="please_enter_email">Sicela ufake ikheli lakho le-imeyili</string>
+    <string name="please_enter_valid_email">Sicela ufake ikheli le-imeyili elivumelekile</string>
+    <string name="please_enter_password">Sicela ufake iphasiwedi yakho</string>
+    <string name="password_too_short">Iphasiwedi kufanele ibe okungenani nezinhlamvu eziyi-8</string>
+    <string name="google_sign_in_failed">Ukungena ngeGoogle kwehlulekile: %1$s</string>
+    <string name="unable_process_google">Ayikwazi ukucubungula i-akhawunti yeGoogle: %1$s</string>
+    <string name="unexpected_google_credential">Imininingwane yeGoogle engalindelekile</string>
+    <string name="dont_have_account">Awunayo i-akhawunti? Dala eyodwa</string>
+    <string name="registration_successful">Ukubhalisa kuphumelele</string>
+    <string name="passwords_dont_match">Amaphasiwedi awafani</string>
+    <string name="login_to_your_account">Ngena ku-akhawunti yakho ye-HealthEase</string>
+    <string name="sign_in_with_google">Ngena ngeGoogle</string>
+    <string name="welcome_back">Siyakwamukela futhi</string>
+
+    <!-- Settings screen -->
+    <string name="settings_subtitle">Lungiselela ukusebenzisa kwakho i-HealthEase</string>
+    <string name="language_and_region">Ulimi nesifunda</string>
+    <string name="app_language">Ulimi lwe-app</string>
+    <string name="appearance">Ukubukeka</string>
+    <string name="dark_mode">Imodi emnyama</string>
+    <string name="accessibility">Ukufinyeleleka</string>
+    <string name="text_size">Usayizi wombhalo</string>
+    <string name="information">Ulwazi</string>
+    <string name="privacy_security">Ubumfihlo nokuphepha</string>
+    <string name="about_healthease">Mayelana ne-HealthEase</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_tagline">Umlingani wakho wezempilo</string>
+    <string name="wellness_journey">UHAMBO LWAKHO LWEMPILO</string>
+    <string name="health_glance">Umbono jikelele wempilo yakho</string>
+    <string name="choose_service">Khetha insizakalo ukuze uqale.</string>
+    <string name="medication_desc">Landelela imithi yakho</string>
+    <string name="appointment_desc">Hlela ama-aphoyintimenti akho</string>
+    <string name="profile_desc">Phatha imininingwane yakho</string>
+    <string name="settings_desc">Lungiselela indlela osebenzisa ngayo</string>
+    <string name="open">Vula</string>
+    <string name="footer_tagline">HealthEase • Impilo yakho ibalulekile</string>
+    <string name="or_divider">NOMA</string>
+    <string name="please_wait">Sicela ulinde...</string>
+    <string name="connecting">Iyaxhuma...</string>
+    <string name="no_google_account">Akukho akhawunti yeGoogle kule divayisi. Engeza eyodwa kuzilungiselelo zefoni uphinde uzame futhi.</string>
+
 </resources>

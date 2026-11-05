@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">HealthEase_Part_2</string>
-    <string name="healthease">HealthEase</string>
+    <string name="app_name" translatable="false">HealthEase_Part_2</string>
+    <string name="healthease" translatable="false">HealthEase</string>
+    <string name="default_web_client_id" translatable="false">44212283877-6m760s15fnu2bhlfjcaplskqd5i90r7b.apps.googleusercontent.com</string>
+    <string name="healthease_logo">HealthEase logo</string>
+
     <string name="personal_healthcare_management">Personal Healthcare Management</string>
     <string name="register">Register</string>
     <string name="create_your_account">Create Your Account</string>
@@ -10,7 +13,6 @@
     <string name="password">Password</string>
     <string name="email_address">Email Address</string>
     <string name="full_name">Full Name</string>
-    <string name="default_web_client_id">44212283877-6m760s15fnu2bhlfjcaplskqd5i90r7b.apps.googleusercontent.com</string>
     <string name="login">Login</string>
     <string name="welcome_user">Welcome, %1$s</string>
     <string name="dashboard_subtitle">What would you like to do today?</string>
@@ -27,7 +29,6 @@
     <string name="profile_updated">Profile updated</string>
     <string name="enter_your_name">Please enter your name</string>
     <string name="settings">Settings</string>
-    <string name="healthease_logo">HealthEase logo</string>
     <string name="setting">Settings</string>
     <string name="saved_reminders">Saved Reminders</string>
     <string name="back">Back</string>
@@ -60,20 +61,51 @@
     <string name="enable_notifications">Enable notifications</string>
     <string name="language">Language</string>
     <string name="notifications">Notifications</string>
-    <string name="reminder_time" translatable="false">Reminder Time</string>
-    <string name="save_settings" translatable="false">Save Settings</string>
-    <string name="login_successful" translatable="false">Login successful</string>
-    <string name="please_enter_email" translatable="false">Please enter your email address</string>
-    <string name="please_enter_valid_email" translatable="false">Please enter a valid email address</string>
-    <string name="please_enter_password" translatable="false">Please enter your password</string>
-    <string name="password_too_short" translatable="false">Password must be at least 8 characters</string>
-    <string name="google_sign_in_failed" translatable="false">Google sign-in failed: %1$s</string>
-    <string name="unable_process_google" translatable="false">Unable to process Google account: %1$s</string>
-    <string name="unexpected_google_credential" translatable="false">Unexpected Google credential</string>
-    <string name="dont_have_account" translatable="false">Don\'t have an account? Create one</string>
-    <string name="registration_successful" translatable="false">Registration successful</string>
-    <string name="passwords_dont_match" translatable="false">Passwords do not match</string>
-    <string name="login_to_your_account" translatable="false">Login to your HealthEase account</string>
-    <string name="sign_in_with_google" translatable="false">Sign in with Google</string>
-    <string name="welcome_back" translatable="false">Welcome Back</string>
+    <string name="reminder_time">Reminder Time</string>
+    <string name="save_settings">Save Settings</string>
+
+    <!-- Login and registration -->
+    <string name="login_successful">Login successful</string>
+    <string name="please_enter_email">Please enter your email address</string>
+    <string name="please_enter_valid_email">Please enter a valid email address</string>
+    <string name="please_enter_password">Please enter your password</string>
+    <string name="password_too_short">Password must be at least 8 characters</string>
+    <string name="google_sign_in_failed">Google sign-in failed: %1$s</string>
+    <string name="unable_process_google">Unable to process Google account: %1$s</string>
+    <string name="unexpected_google_credential">Unexpected Google credential</string>
+    <string name="dont_have_account">Don\'t have an account? Create one</string>
+    <string name="registration_successful">Registration successful</string>
+    <string name="passwords_dont_match">Passwords do not match</string>
+    <string name="login_to_your_account">Login to your HealthEase account</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="welcome_back">Welcome Back</string>
+
+    <!-- Settings screen -->
+    <string name="settings_subtitle">Personalise your HealthEase experience</string>
+    <string name="language_and_region">Language and Region</string>
+    <string name="app_language">App language</string>
+    <string name="appearance">Appearance</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="accessibility">Accessibility</string>
+    <string name="text_size">Text size</string>
+    <string name="information">Information</string>
+    <string name="privacy_security">Privacy and Security</string>
+    <string name="about_healthease">About HealthEase</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_tagline">Your health companion</string>
+    <string name="wellness_journey">YOUR WELLNESS JOURNEY</string>
+    <string name="health_glance">Your health at a glance</string>
+    <string name="choose_service">Choose a service to get started.</string>
+    <string name="medication_desc">Keep track of your medication</string>
+    <string name="appointment_desc">Stay organised with your visits</string>
+    <string name="profile_desc">Manage your personal details</string>
+    <string name="settings_desc">Customise your experience</string>
+    <string name
+        ="open">Open</string>
+    <string name="footer_tagline">HealthEase • Your health matters</string>
+    <string name="or_divider">OR</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="connecting">Connecting...</string>
+    <string name="no_google_account">No Google account found on this device. Add one in the device settings and try again.</string>
 </resources>

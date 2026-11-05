@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_light">#101820</color>
+
+    <!-- Settings screen (dark) -->
+    <color name="settings_background">#101820</color>
+    <color name="settings_card">#1E2B35</color>
+    <color name="settings_heading">#EAF4F7</color>
+    <color name="settings_body">#B5C5CE</color>
+
+    <!-- Dashboard (dark) -->
+    <color name="dash_background">#101820</color>
+    <color name="dash_card">#1E2B35</color>
+    <color name="dash_stroke">#2C3E4A</color>
+    <color name="dash_heading">#EAF4F7</color>
+    <color name="dash_muted">#A9B8C2</color>
+    <color name="dash_brand">#4DB6AC</color>
+    <color name="dash_logout">#FF8A80</color>
+    <color name="dash_logout_stroke">#6B3A36</color>
+
+    <color name="tile_rx">#17413D</color>
+    <color name="tile_cal">#1F3350</color>
+    <color name="tile_me">#33264A</color>
+    <color name="tile_settings">#4A3220</color>
+
+    <color name="icon_rx">#5FD4C8</color>
+    <color name="icon_cal">#8DB8F0</color>
+    <color name="icon_me">#C3A3F0</color>
+    <color name="icon_settings">#F0B77A</color>
+</resources>

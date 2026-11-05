@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="settings_background">#101820</color>
-    <color name="settings_card">#1E2B35</color>
-    <color name="settings_heading">#EAF4F7</color>
-    <color name="settings_body">#B5C5CE</color>
-</resources>
+    <color name="teal_primary">#009688</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background_light">#F5F7FA</color>
 
+    <!-- Settings screen (light) -->
+    <color name="settings_background">#F5F7FA</color>
+    <color name="settings_card">#FFFFFF</color>
+    <color name="settings_heading">#1B2B2A</color>
+    <color name="settings_body">#4A5B59</color>
+
+    <!-- Dashboard (light) -->
+    <color name="dash_background">#F4F8FA</color>
+    <color name="dash_card">#FFFFFF</color>
+    <color name="dash_stroke">#E1ECEE</color>
+    <color name="dash_heading">#183B45</color>
+    <color name="dash_muted">#718096</color>
+    <color name="dash_brand">#087E75</color>
+    <color name="dash_logout">#B42318</color>
+    <color name="dash_logout_stroke">#E7B7B3</color>
+
+    <color name="tile_rx">#E2F4F1</color>
+    <color name="tile_cal">#E8F0FF</color>
+    <color name="tile_me">#F1E9FF</color>
+    <color name="tile_settings">#FFF0E1</color>
+
+    <color name="icon_rx">#087E75</color>
+    <color name="icon_cal">#3267A8</color>
+    <color name="icon_me">#7952AC</color>
+    <color name="icon_settings">#A45A19</color>
+</resources>

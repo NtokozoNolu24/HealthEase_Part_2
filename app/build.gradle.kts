@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -16,22 +17,41 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner =
+            "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        create("healthEaseDebug") {
+            storeFile = file("healthease-debug.keystore")
+            storePassword = "android"
+            keyAlias = "healthease"
+            keyPassword = "android"
+        }
     }
 
     buildTypes {
+        debug {
+            signingConfig =
+                signingConfigs.getByName("healthEaseDebug")
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
+                getDefaultProguardFile(
+                    "proguard-android-optimize.txt"
+                ),
                 "proguard-rules.pro"
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     buildFeatures {
         compose = true
     }
@@ -39,11 +59,14 @@ android {
 
 kotlin {
     compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+        jvmTarget.set(
+            org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
+        )
     }
 }
 
 dependencies {
+    // Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -68,21 +91,18 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    // Google Credential Manager
+    // Google Credential Manager and Google Sign-In
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
 
-    // Firebase Authentication
+    // Firebase Authentication, Realtime Database and Cloud Messaging
     implementation(platform("com.google.firebase:firebase-bom:34.19.0"))
     implementation("com.google.firebase:firebase-auth")
-
-// Firebase Realtime Database
     implementation("com.google.firebase:firebase-database")
-
-// Firebase Cloud Messaging
     implementation("com.google.firebase:firebase-messaging")
 
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

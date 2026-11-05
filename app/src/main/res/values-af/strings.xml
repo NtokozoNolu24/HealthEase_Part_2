@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HealthEase</string>
-    <string name="healthease">HealthEase</string>
     <string name="personal_healthcare_management">Persoonlike gesondheidsorgbestuur</string>
     <string name="register">Registreer</string>
     <string name="create_your_account">Skep jou rekening</string>
@@ -60,18 +58,49 @@
     <string name="notifications">Kennisgewings</string>
     <string name="reminder_time">Herinneringstyd</string>
     <string name="save_settings">Stoor instellings</string>
+
+    <!-- Login and registration -->
     <string name="login_successful">Aanmelding suksesvol</string>
     <string name="please_enter_email">Voer asseblief jou e-posadres in</string>
     <string name="please_enter_valid_email">Voer asseblief \'n geldige e-posadres in</string>
     <string name="please_enter_password">Voer asseblief jou wagwoord in</string>
-    <string name="password_too_short">Wagwoord moet minstens 6 karakters bevat</string>
+    <string name="password_too_short">Wagwoord moet minstens 8 karakters bevat</string>
     <string name="google_sign_in_failed">Google-aanmelding het misluk: %1$s</string>
     <string name="unable_process_google">Kan nie Google-aanmelding verwerk nie: %1$s</string>
     <string name="unexpected_google_credential">Onverwagte Google-aanmeldbewys</string>
-    <string name="dont_have_account">Het jy nie \'n rekening nie?</string>
+    <string name="dont_have_account">Het jy nie \'n rekening nie? Skep een</string>
     <string name="registration_successful">Registrasie suksesvol</string>
     <string name="passwords_dont_match">Wagwoorde stem nie ooreen nie</string>
     <string name="login_to_your_account">Teken aan by jou rekening</string>
     <string name="sign_in_with_google">Teken aan met Google</string>
     <string name="welcome_back">Welkom terug</string>
+
+    <!-- Settings screen -->
+    <string name="settings_subtitle">Pasmaak jou HealthEase-ervaring</string>
+    <string name="language_and_region">Taal en streek</string>
+    <string name="app_language">Toepassingstaal</string>
+    <string name="appearance">Voorkoms</string>
+    <string name="dark_mode">Donker modus</string>
+    <string name="accessibility">Toeganklikheid</string>
+    <string name="text_size">Teksgrootte</string>
+    <string name="information">Inligting</string>
+    <string name="privacy_security">Privaatheid en sekuriteit</string>
+    <string name="about_healthease">Oor HealthEase</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_tagline">Jou gesondheidsmaat</string>
+    <string name="wellness_journey">JOU WELSTANDSREIS</string>
+    <string name="health_glance">Jou gesondheid in een oogopslag</string>
+    <string name="choose_service">Kies \'n diens om te begin.</string>
+    <string name="medication_desc">Hou jou medikasie dop</string>
+    <string name="appointment_desc">Bly georganiseerd met jou besoeke</string>
+    <string name="profile_desc">Bestuur jou persoonlike besonderhede</string>
+    <string name="settings_desc">Pasmaak jou ervaring</string>
+    <string name="open">Maak oop</string>
+    <string name="footer_tagline">HealthEase • Jou gesondheid is belangrik</string>
+
+    <string name="or_divider">OF</string>
+    <string name="please_wait">Wag asseblief...</string>
+    <string name="connecting">Koppel tans...</string>
+    <string name="no_google_account">Geen Google-rekening op hierdie toestel gevind nie. Voeg een in die toestel se instellings by en probeer weer.</string>
 </resources>

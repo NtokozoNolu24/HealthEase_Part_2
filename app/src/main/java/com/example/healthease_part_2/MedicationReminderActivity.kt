@@ -11,11 +11,11 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+
 import com.google.firebase.database.ValueEventListener
 import java.util.Calendar
 
-class MedicationReminderActivity : AppCompatActivity() {
+class MedicationReminderActivity : BaseActivity() {
 
     private lateinit var etMedicationName: EditText
     private lateinit var btnSelectTime: Button
