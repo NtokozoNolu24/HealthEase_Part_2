@@ -30,9 +30,15 @@ jobs:
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest
 
-      - name: Build debug APK
-        run: ./gradlew assembleDebug
-
+      - name: Create debug keystore
+        run: |
+          if [ ! -f app/healthease-debug.keystore ]; then
+            keytool -genkeypair -v \
+              -keystore app/healthease-debug.keystore \
+              -storepass android -keypass android \
+              -alias healthease -keyalg RSA -keysize 2048 -validity 10000 \
+              -dname "CN=HealthEase Debug,O=HealthEase,C=ZA"
+          fi
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v4
